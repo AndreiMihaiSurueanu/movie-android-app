@@ -44,7 +44,7 @@ public class MovieListActivity extends AppCompatActivity {
         Call<MovieSearchResponse> responseCall = movieApi
                 .searchMovie(
                         Credentials.API_KEY,
-                        "Jack Reacher",
+                        "Action",
                         1
                 );
 
