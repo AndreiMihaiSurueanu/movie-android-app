@@ -22,6 +22,7 @@ public interface MovieApi {
     // Making search with ID
     // https://api.themoviedb.org/3/movie/550?api_key=52a18783ed514602a5facb15a0177e61
     // Remember that movie_id= 550 is for Fight Club movie
+    // Let's Test Jack Reacher id
     @GET("movie/{movie_id}")
     Call<MovieModel> getMovie(
             @Path("movie_id") int movie_id,
