@@ -44,7 +44,7 @@ public class MovieListActivity extends AppCompatActivity {
         Call<MovieSearchResponse> responseCall = movieApi
                 .searchMovie(
                         Credentials.API_KEY,
-                        "Action",
+                        "Jack Reacher",
                         1
                 );
 
@@ -57,7 +57,7 @@ public class MovieListActivity extends AppCompatActivity {
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
 
                     for (MovieModel movie : movies) {
-                        Log.v("Tag", "Name: " + movie.getTitle());
+                        Log.v("Tag", "The release date" + movie.getRelease_date());
                     }
                 } else {
                     try {
