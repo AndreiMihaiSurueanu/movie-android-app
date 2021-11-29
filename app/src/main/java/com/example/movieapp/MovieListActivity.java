@@ -74,4 +74,39 @@ public class MovieListActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void GetRetrofitResponseAccordingToID() {
+        MovieApi movieApi = Servicey.getMovieApi();
+
+        Call<MovieModel> responseCall = movieApi
+                .getMovie(
+                        550,
+                        Credentials.API_KEY
+                );
+
+        responseCall.enqueue(new Callback<MovieModel>() {
+            @Override
+            public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
+                if(response.code() == 200){
+
+                    MovieModel movie = response.body();
+
+                    Log.v("Tag: ", "The Response " + movie.getTitle());
+
+                } else {
+                    try {
+                        Log.v("Tag", "Error" + response.errorBody().string());
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieModel> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
