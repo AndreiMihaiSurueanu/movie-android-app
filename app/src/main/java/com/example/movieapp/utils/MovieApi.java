@@ -10,7 +10,7 @@ public interface MovieApi {
 
     // Search for movies
     // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
-    @GET
+    @GET("search/movie")
     Call<MovieSearchResponse> searchMovie(
             @Query("api_key") String key,
             @Query("query") String query,
