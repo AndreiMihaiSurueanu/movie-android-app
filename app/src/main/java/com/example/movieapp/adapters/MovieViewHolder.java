@@ -13,7 +13,7 @@ import com.example.movieapp.R;
 public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     // Widgets
-    TextView title, category, duration;
+    TextView title, release_date, duration;
     ImageView imageView;
     RatingBar ratingBar;
 
@@ -26,7 +26,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.onMovieListener = onMovieListener;
 
         title = itemView.findViewById(R.id.movie_title);
-        category = itemView.findViewById(R.id.movie_category);
+        release_date = itemView.findViewById(R.id.movie_category);
         duration = itemView.findViewById(R.id.movie_duration);
 
         imageView = itemView.findViewById(R.id.movie_img);
