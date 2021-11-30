@@ -34,10 +34,9 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
-        // Calling the observers
-        ObserveAnyChange();
-
         ConfigureRecyclerView();
+        ObserveAnyChange();
+        searchMovieApi("fast", 1);
 
     }
 
