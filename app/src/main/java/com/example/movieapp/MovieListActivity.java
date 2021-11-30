@@ -50,6 +50,11 @@ public class MovieListActivity extends AppCompatActivity {
         });
     }
 
+    // 4- Calling method in Main Activity
+    private void searchMovieApi(String query, int pageNumber){
+        movieListViewModel.searchMovieApi(query, pageNumber);
+    }
+
     private void GetRetrofitResponse() {
         MovieApi movieApi = Servicey.getMovieApi();
 
