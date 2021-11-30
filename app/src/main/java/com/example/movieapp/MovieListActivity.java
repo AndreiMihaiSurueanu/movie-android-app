@@ -1,7 +1,6 @@
 package com.example.movieapp;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -81,7 +80,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
     @Override
     public void onMovieClick(int position) {
-        Toast.makeText(this, "The Position " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "The Position " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
