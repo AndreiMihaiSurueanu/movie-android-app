@@ -6,17 +6,21 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movieapp.adapters.MovieRecyclerView;
+import com.example.movieapp.adapters.OnMovieListener;
 import com.example.movieapp.models.MovieModel;
 import com.example.movieapp.viewmodels.MovieListViewModel;
 
 import java.util.List;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity implements OnMovieListener {
 
     // RecyclerView
     private RecyclerView recyclerView;
+    private MovieRecyclerView movieRecyclerAdapter;
 
     // ViewModel
     private MovieListViewModel movieListViewModel;
@@ -33,6 +37,8 @@ public class MovieListActivity extends AppCompatActivity {
         // Calling the observers
         ObserveAnyChange();
 
+        ConfigureRecyclerView();
+
     }
 
     // Observing any data change
@@ -45,6 +51,8 @@ public class MovieListActivity extends AppCompatActivity {
                     for (MovieModel movieModel: movieModels){
                         // Get the data in log
                         Log.v("Tagy", "onChanged: " + movieModel.getTitle());
+
+                        movieRecyclerAdapter.setmMovies(movieModels);
                     }
                 }
             }
@@ -54,6 +62,25 @@ public class MovieListActivity extends AppCompatActivity {
     // 4- Calling method in Main Activity
     private void searchMovieApi(String query, int pageNumber){
         movieListViewModel.searchMovieApi(query, pageNumber);
+    }
+
+    // 5- Initializing recyclerView & adding data to it
+    private void ConfigureRecyclerView(){
+        // LIve Data can't be passed via the constructor
+        movieRecyclerAdapter = new MovieRecyclerView(this);
+
+        recyclerView.setAdapter(movieRecyclerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onMovieClick(int position) {
+
+    }
+
+    @Override
+    public void onCategoryClick(String category) {
+
     }
 
 //    private void GetRetrofitResponse() {
