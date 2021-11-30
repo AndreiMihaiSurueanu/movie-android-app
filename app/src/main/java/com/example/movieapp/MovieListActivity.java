@@ -3,11 +3,11 @@ package com.example.movieapp;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieapp.models.MovieModel;
 import com.example.movieapp.viewmodels.MovieListViewModel;
@@ -16,9 +16,8 @@ import java.util.List;
 
 public class MovieListActivity extends AppCompatActivity {
 
-    // Before we run our app, we need to add the Network Security config
-
-    Button btn;
+    // RecyclerView
+    private RecyclerView recyclerView;
 
     // ViewModel
     private MovieListViewModel movieListViewModel;
@@ -27,7 +26,8 @@ public class MovieListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = findViewById(R.id.button);
+
+        recyclerView = findViewById(R.id.recyclerView);
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
