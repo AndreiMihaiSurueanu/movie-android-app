@@ -2,7 +2,6 @@ package com.example.movieapp;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -33,15 +32,6 @@ public class MovieListActivity extends AppCompatActivity {
 
         // Calling the observers
         ObserveAnyChange();
-
-        // Testing the Method
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Displaying only the results of page 1
-                searchMovieApi("fast", 2);
-            }
-        });
 
     }
 
