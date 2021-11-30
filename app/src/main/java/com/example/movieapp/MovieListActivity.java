@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.movieapp.models.MovieModel;
@@ -38,12 +37,6 @@ public class MovieListActivity extends AppCompatActivity {
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GetRetrofitResponseAccordingToID();
-            }
-        });
     }
 
     private void GetRetrofitResponse() {
