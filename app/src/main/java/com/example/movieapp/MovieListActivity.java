@@ -1,6 +1,7 @@
 package com.example.movieapp;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -71,7 +72,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
     @Override
     public void onMovieClick(int position) {
-
+        Toast.makeText(this, "hiuii" , Toast.LENGTH_SHORT).show();
     }
 
     @Override
