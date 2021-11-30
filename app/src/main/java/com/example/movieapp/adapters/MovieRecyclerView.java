@@ -43,7 +43,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         // ImageView: Using Glide Library
         Glide.with(holder.itemView.getContext())
-                .load(mMovies.get(i))
+                .load(mMovies.get(i).getPoster_path())
                 .into(((MovieViewHolder)holder).imageView);
 
 
