@@ -1,6 +1,8 @@
 package com.example.movieapp;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,17 @@ public class MovieListActivity extends AppCompatActivity {
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
+        // Calling the observers
+        ObserveAnyChange();
+
+        // Testing the Method
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchMovieApi("Fast", 1);
+            }
+        });
+
     }
 
     // Observing any data change
@@ -35,6 +48,12 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<MovieModel> movieModels) {
                 // Observing for any data change
+                if (movieModels != null) {
+                    for (MovieModel movieModel: movieModels){
+                        // Get the data in log
+                        Log.v("Tag", "onChanged: " + movieModel.getTitle());
+                    }
+                }
             }
         });
     }
