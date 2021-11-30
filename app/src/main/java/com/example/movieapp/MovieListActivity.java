@@ -1,6 +1,7 @@
 package com.example.movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.example.movieapp.request.Servicey;
 import com.example.movieapp.response.MovieSearchResponse;
 import com.example.movieapp.utils.Credentials;
 import com.example.movieapp.utils.MovieApi;
+import com.example.movieapp.viewmodels.MovieListViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,11 +26,17 @@ import retrofit2.Response;
 public class MovieListActivity extends AppCompatActivity {
 
     Button btn;
+
+    // ViewModel
+    private MovieListViewModel movieListViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = findViewById(R.id.button);
+
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
