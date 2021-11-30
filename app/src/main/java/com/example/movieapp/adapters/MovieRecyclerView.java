@@ -40,6 +40,11 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mMovies.size();
+    }
+
+    public void setmMovies(List<MovieModel> mMovies) {
+        this.mMovies = mMovies;
+        notifyDataSetChanged();
     }
 }
