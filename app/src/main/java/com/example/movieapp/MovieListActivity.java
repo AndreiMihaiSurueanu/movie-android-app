@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,6 +35,9 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // SearchView
+        SetupSearchView();
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -85,5 +89,28 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
     }
 
+    // Get data from searchview & query the api to get the results (Movies)
+    private void SetupSearchView() {
+
+        final SearchView searchView = findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                movieListViewModel.searchMovieApi(
+                        // The search string getted from searchview
+                        query,
+                        1
+                );
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+    }
 
 }
