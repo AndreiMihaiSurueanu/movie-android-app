@@ -61,7 +61,7 @@ public class MovieApiClient {
                 // Cancelling the retrofit call
                 myHandler.cancel(true);
             }
-        }, 5000, TimeUnit.MICROSECONDS);
+        }, 3000, TimeUnit.MILLISECONDS);
     }
 
     // Retrieving data from REstAPI by runnable class
