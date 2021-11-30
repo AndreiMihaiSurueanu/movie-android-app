@@ -16,6 +16,8 @@ import java.util.List;
 
 public class MovieListActivity extends AppCompatActivity {
 
+    // Before we run our app, we need to add the Network Security config
+
     Button btn;
 
     // ViewModel
