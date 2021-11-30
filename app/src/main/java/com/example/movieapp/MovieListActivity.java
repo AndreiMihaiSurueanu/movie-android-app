@@ -38,7 +38,7 @@ public class MovieListActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchMovieApi("Fast", 1);
+                searchMovieApi("fast", 1);
             }
         });
 
@@ -53,7 +53,7 @@ public class MovieListActivity extends AppCompatActivity {
                 if (movieModels != null) {
                     for (MovieModel movieModel: movieModels){
                         // Get the data in log
-                        Log.v("Tag", "onChanged: " + movieModel.getTitle());
+                        Log.v("Tagy", "onChanged: " + movieModel.getTitle());
                     }
                 }
             }
