@@ -38,6 +38,7 @@ public class MovieListActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Displaying only the results of page 1
                 searchMovieApi("fast", 1);
             }
         });
