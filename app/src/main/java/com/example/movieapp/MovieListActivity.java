@@ -49,7 +49,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
                 if (movieModels != null) {
                     for (MovieModel movieModel: movieModels){
                         // Get the data in log
-                        Log.v("Tagy", "onChanged: " + movieModel.getTitle());
+                        Log.v("Tagy", "onChanged: " + movieModel.getRuntime());
 
                         movieRecyclerAdapter.setmMovies(movieModels);
                     }
