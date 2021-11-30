@@ -28,6 +28,14 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+
+        ((MovieViewHolder)holder).title.setText(mMovies.get(i).getTitle());
+        ((MovieViewHolder)holder).category.setText(mMovies.get(i).get());
+        ((MovieViewHolder)holder).duration.setText(mMovies.get(i).get());
+
+        // We need to get the runtime & the category
+        // We need to change the api response
+
     }
 
     @Override
