@@ -39,7 +39,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         // Their is an error in runtime duration
         // Let's Fix this error
-        ((MovieViewHolder)holder).duration.setText("" + mMovies.get(i).getRuntime());
+        ((MovieViewHolder)holder).duration.setText("" + mMovies.get(i).getMovie_id());
 
         // vote average is over 10, and our rating bar is over 5 stars: dividing by 2
         ((MovieViewHolder)holder).ratingBar.setRating(mMovies.get(i).getVote_average()/2);
