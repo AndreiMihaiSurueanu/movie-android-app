@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 // This class is for single movie request
 public class MovieResponse {
     // 1- Finding the Movie Object
+    
     @SerializedName("results")
     @Expose
     private MovieModel movie;
