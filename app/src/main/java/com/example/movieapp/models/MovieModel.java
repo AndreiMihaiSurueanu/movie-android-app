@@ -3,32 +3,30 @@ package com.example.movieapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
-
 public class MovieModel implements Parcelable {
     // Model Class for our movies
     private String title;
     private String poster_path;
     private String release_date;
-
-    @SerializedName("id")
     private int movie_id;
     private float vote_average;
     private String movie_overview;
-    private int runtime;
+
+
+    private String original_language;
 
     // For purpose of simplicity, i will use the release_date instead of category
     // genres is nested json object, we will learn it later on this series
 
     //Constructor
-    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, int runtime) {
+    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, String original_language) {
         this.title = title;
         this.poster_path = poster_path;
         this.release_date = release_date;
         this.movie_id = movie_id;
         this.vote_average = vote_average;
         this.movie_overview = movie_overview;
-        this.runtime = runtime;
+        this.original_language = original_language;
     }
 
     protected MovieModel(Parcel in) {
@@ -38,7 +36,7 @@ public class MovieModel implements Parcelable {
         movie_id = in.readInt();
         vote_average = in.readFloat();
         movie_overview = in.readString();
-        runtime = in.readInt();
+        original_language = in.readString();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -78,8 +76,8 @@ public class MovieModel implements Parcelable {
         return movie_overview;
     }
 
-    public int getRuntime() {
-        return runtime;
+    public String getOriginal_language() {
+        return original_language;
     }
 
     @Override
@@ -95,7 +93,7 @@ public class MovieModel implements Parcelable {
         parcel.writeInt(movie_id);
         parcel.writeFloat(vote_average);
         parcel.writeString(movie_overview);
-        parcel.writeInt(runtime);
+        parcel.writeString(original_language);
     }
 
     @Override
@@ -107,7 +105,7 @@ public class MovieModel implements Parcelable {
                 ", movie_id=" + movie_id +
                 ", vote_average=" + vote_average +
                 ", movie_overview='" + movie_overview + '\'' +
-                ", runtime=" + runtime +
+                ", original_language='" + original_language + '\'' +
                 '}';
     }
 }
