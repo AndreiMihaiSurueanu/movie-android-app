@@ -17,8 +17,13 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
     ImageView imageView;
     RatingBar ratingBar;
 
-    public MovieViewHolder(@NonNull View itemView) {
+    // Click Listener
+    OnMovieListener onMovieListener;
+
+    public MovieViewHolder(@NonNull View itemView, OnMovieListener onMovieListener) {
         super(itemView);
+
+        this.onMovieListener = onMovieListener;
 
         title = itemView.findViewById(R.id.movie_title);
         category = itemView.findViewById(R.id.movie_category);
@@ -27,10 +32,12 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
         imageView = itemView.findViewById(R.id.movie_img);
         ratingBar = itemView.findViewById(R.id.rating_bar);
 
+        itemView.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-
+        onMovieListener.onMovieClick(getAdapterPosition());
     }
 }
