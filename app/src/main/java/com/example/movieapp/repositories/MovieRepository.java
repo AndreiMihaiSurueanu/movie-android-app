@@ -12,8 +12,6 @@ public class MovieRepository {
 
     private static MovieRepository instance;
 
-    // Live Data
-    private MutableLiveData<List<MovieModel>> mMovies;
 
     public static MovieRepository getInstance(){
         if(instance == null) {
