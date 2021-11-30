@@ -44,7 +44,6 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
         ConfigureRecyclerView();
         ObserveAnyChange();
-        searchMovieApi("fast", 1);
 
     }
 
@@ -62,11 +61,6 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
                 }
             }
         });
-    }
-
-    // 4- Calling method in Main Activity
-    private void searchMovieApi(String query, int pageNumber){
-        movieListViewModel.searchMovieApi(query, pageNumber);
     }
 
     // 5- Initializing recyclerView & adding data to it
