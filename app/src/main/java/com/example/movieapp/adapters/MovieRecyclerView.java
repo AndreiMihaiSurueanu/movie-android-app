@@ -18,6 +18,10 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<MovieModel> mMovies;
     private OnMovieListener onMovieListener;
 
+    public MovieRecyclerView(OnMovieListener onMovieListener) {
+        this.onMovieListener = onMovieListener;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
