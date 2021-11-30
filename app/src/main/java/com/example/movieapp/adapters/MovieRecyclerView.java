@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
 import com.example.movieapp.models.MovieModel;
 
@@ -33,8 +34,14 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
         ((MovieViewHolder)holder).release_date.setText(mMovies.get(i).getRelease_date());
         ((MovieViewHolder)holder).duration.setText(mMovies.get(i).getRuntime());
 
-        // We need to get the runtime & the category
-        // We need to change the api response
+        // vote average is over 10, and our rating bar is over 5 stars: dividing by 2
+        ((MovieViewHolder)holder).ratingBar.setRating(mMovies.get(i).getVote_average()/2);
+
+        // ImageView: Using Glide Library
+        Glide.with(holder.itemView.getContext())
+                .load(mMovies.get(i))
+                .into(((MovieViewHolder)holder).imageView);
+
 
     }
 
