@@ -39,7 +39,7 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Displaying only the results of page 1
-                searchMovieApi("fast", 1);
+                searchMovieApi("fast", 2);
             }
         });
 
