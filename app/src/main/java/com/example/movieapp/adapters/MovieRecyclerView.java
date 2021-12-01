@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
 import com.example.movieapp.models.MovieModel;
+import com.example.movieapp.utils.Credentials;
 
 import java.util.List;
 
@@ -43,22 +44,30 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
 
-        ((MovieViewHolder)holder).title.setText(mMovies.get(i).getTitle());
-        ((MovieViewHolder)holder).release_date.setText(mMovies.get(i).getRelease_date());
+        int itemViewType = getItemViewType(i);
+        if (itemViewType == DISPLAY_SEARCH) {
 
-        // Their is an error in runtime duration
-        // Let's Fix this error
-        ((MovieViewHolder)holder).duration.setText(mMovies.get(i).getOriginal_language());
+            // vote average is over 10, and our rating bar is over 5 stars: dividing by 2
+            ((MovieViewHolder)holder).ratingBar.setRating(mMovies.get(i).getVote_average()/2);
 
-        // vote average is over 10, and our rating bar is over 5 stars: dividing by 2
-        ((MovieViewHolder)holder).ratingBar.setRating(mMovies.get(i).getVote_average()/2);
+            // ImageView: Using Glide Library
+            Glide.with(holder.itemView.getContext())
+                    .load("https://image.tmdb.org/t/p/w500"
+                            + mMovies.get(i).getPoster_path())
+                    .into(((MovieViewHolder)holder).imageView);
 
-        // ImageView: Using Glide Library
-        Glide.with(holder.itemView.getContext())
-                .load("https://image.tmdb.org/t/p/w500"
-                        + mMovies.get(i).getPoster_path())
-                .into(((MovieViewHolder)holder).imageView);
+        } else {
 
+            // vote average is over 10, and our rating bar is over 5 stars: dividing by 2
+            ((Popular_View_Holder)holder).ratingBar22.setRating(mMovies.get(i).getVote_average()/2);
+
+            // ImageView Using Glide Library
+            Glide.with(holder.itemView.getContext())
+                    .load("https://image.tmdb.org/t/p/w500"
+                            + mMovies.get(i).getPoster_path())
+                    .into(((Popular_View_Holder)holder).imageView22);
+
+        }
 
     }
 
@@ -83,5 +92,13 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
         }
         return null;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (Credentials.POPULAR) {
+            return DISPLAY_POP;
+        } else
+            return DISPLAY_SEARCH;
     }
 }
