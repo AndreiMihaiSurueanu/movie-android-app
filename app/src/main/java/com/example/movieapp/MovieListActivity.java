@@ -2,6 +2,7 @@ package com.example.movieapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
     // ViewModel
     private MovieListViewModel movieListViewModel;
+
+    boolean isPopular = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +146,13 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
+            }
+        });
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isPopular = false;
             }
         });
 
