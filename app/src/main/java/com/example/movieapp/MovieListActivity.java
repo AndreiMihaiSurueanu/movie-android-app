@@ -1,5 +1,6 @@
 package com.example.movieapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -88,6 +89,14 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
     @Override
     public void onMovieClick(int position) {
 //        Toast.makeText(this, "The Position " + position, Toast.LENGTH_SHORT).show();
+
+        // We don't need position of the movie in recyclerview
+        // WE NEED THE ID OF THE MOVIE IN ORDER TO GET ALL IT'S DETAILS
+
+        Intent intent = new Intent(this, MovieDetails.class);
+        intent.putExtra("movie", movieRecyclerAdapter.getSelectedMovie(position));
+        startActivity(intent);
+
     }
 
     @Override
