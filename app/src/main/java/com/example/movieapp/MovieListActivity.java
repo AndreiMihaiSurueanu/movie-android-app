@@ -91,7 +91,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         movieRecyclerAdapter = new MovieRecyclerView(this);
 
         recyclerView.setAdapter(movieRecyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         // RecyclerView Pagination
         // Loading next page of api response
