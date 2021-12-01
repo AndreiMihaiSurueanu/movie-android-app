@@ -45,3 +45,6 @@ public class MovieDetails extends AppCompatActivity {
         }
     }
 }
+
+// Now let's make our app looks more professional
+// 1- editing the layout of details activity
