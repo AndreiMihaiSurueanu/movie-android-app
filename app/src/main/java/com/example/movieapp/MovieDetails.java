@@ -57,3 +57,7 @@ public class MovieDetails extends AppCompatActivity {
 
 // Amazing !!! We are professional developers !!!!
 
+// We deserve 5 stars on our hard work!
+// Be honest !@!! Rate us 5 stars on udemy
+// Subscribe to our youtube channel: Master COding
+// download our app: Master Coding on playstore!!
