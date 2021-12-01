@@ -48,6 +48,9 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         ObserveAnyChange();
         ObservePopularMovies();
 
+        // Getting popular movies
+        movieListViewModel.searchMoviePop(1);
+
     }
 
     private void ObservePopularMovies() {
