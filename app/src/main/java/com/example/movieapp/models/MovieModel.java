@@ -3,6 +3,8 @@ package com.example.movieapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MovieModel implements Parcelable {
     // Model Class for our movies
     private String title;
@@ -10,6 +12,9 @@ public class MovieModel implements Parcelable {
     private String release_date;
     private int movie_id;
     private float vote_average;
+
+    // We have missed it :)
+    @SerializedName("overview")
     private String movie_overview;
 
 
