@@ -3,6 +3,7 @@ package com.example.movieapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MovieDetails extends AppCompatActivity {
     private void GetDataFromIntent() {
         if(getIntent().hasExtra("movie")){
             MovieModel movieModel = getIntent().getParcelableExtra("movie");
+            Log.v("Tagy", "incoming intent " + movieModel.getTitle());
         }
     }
 }
