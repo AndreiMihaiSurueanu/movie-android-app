@@ -1,6 +1,7 @@
 package com.example.movieapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class MovieDetails extends AppCompatActivity {
             descDetails.setText(movieModel.getMovie_overview());
             ratingBarDetails.setRating(movieModel.getVote_average()/2);
 
+            Log.v("Tagy", "" + movieModel.getMovie_overview());
+
             Glide.with(this)
                     .load("https://image.tmdb.org/t/p/w500" + movieModel.getPoster_path())
                     .into(imageViewDetails);
@@ -49,3 +52,5 @@ public class MovieDetails extends AppCompatActivity {
 // Now let's make our app looks more professional
 // 1- editing the layout of details activity
 // 2- Creating shadow background with gradient effect
+// I don't know why we are not getting the description in textview
+// let's try to get it from logcat
