@@ -2,6 +2,7 @@ package com.example.movieapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -70,6 +71,17 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
         recyclerView.setAdapter(movieRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // RecyclerView Pagination
+        // Loading next page of api response
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if(!recyclerView.canScrollVertically(1)){
+                    // Here we need to display the next search results on the next page of api
+                }
+            }
+        });
     }
 
     @Override
