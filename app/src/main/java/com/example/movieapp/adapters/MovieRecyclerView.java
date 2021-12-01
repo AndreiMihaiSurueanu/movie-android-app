@@ -18,6 +18,9 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<MovieModel> mMovies;
     private OnMovieListener onMovieListener;
 
+    private static final int DISPLAY_POP = 1;
+    private static final int DISPLAY_SEARCH = 2;
+
     public MovieRecyclerView(OnMovieListener onMovieListener) {
         this.onMovieListener = onMovieListener;
     }
@@ -26,8 +29,14 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
-        return new MovieViewHolder(view, onMovieListener);
+        View view = null;
+        if (viewType == DISPLAY_SEARCH) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
+            return new MovieViewHolder(view, onMovieListener);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_movies_layout, parent, false);
+            return new Popular_View_Holder(view, onMovieListener);
+        }
 
     }
 
