@@ -46,7 +46,24 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
 
         ConfigureRecyclerView();
         ObserveAnyChange();
+        ObservePopularMovies();
 
+    }
+
+    private void ObservePopularMovies() {
+        movieListViewModel.getPop().observe(this, new Observer<List<MovieModel>>(){
+            @Override
+            public void onChanged(List<MovieModel> movieModels) {
+                // Observing for any data change
+                if (movieModels != null) {
+                    for (MovieModel movieModel: movieModels){
+                        // Get the data in log
+                        movieRecyclerAdapter.setmMovies(movieModels);
+//                        Log.v(" Tag", "onChanged: " + movieModel.toString());
+                    }
+                }
+            }
+        });
     }
 
     // Observing any data change
