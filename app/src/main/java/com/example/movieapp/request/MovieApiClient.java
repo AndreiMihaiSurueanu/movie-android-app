@@ -21,13 +21,19 @@ import retrofit2.Response;
 
 public class MovieApiClient {
 
-    // LiveData
+    // LiveData for search
     private MutableLiveData<List<MovieModel>> mMovies;
 
     private static MovieApiClient instance;
 
     // making Global RUNNABLE
     private RetrieveMoviesRunnable retrieveMoviesRunnable;
+
+    // Live Data for popular movies
+    private MutableLiveData<List<MovieModel>> mMoviesPop;
+
+    // making Popular runnable
+    private RetrieveMoviesRunnablePop retrieveMoviesRunnablePop;
 
     public static MovieApiClient getInstance() {
         if (instance == null) {
@@ -38,10 +44,15 @@ public class MovieApiClient {
 
     private MovieApiClient() {
         mMovies = new MutableLiveData<>();
+        mMoviesPop = new MutableLiveData<>();
     }
 
     public LiveData<List<MovieModel>> getMovies() {
         return mMovies;
+    }
+
+    public LiveData<List<MovieModel>> getMoviesPop() {
+        return mMoviesPop;
     }
 
     //1- This method that we are going to call through the classes
@@ -62,6 +73,24 @@ public class MovieApiClient {
                 myHandler.cancel(true);
             }
         }, 3000, TimeUnit.MILLISECONDS);
+    }
+
+    public void searchMoviesPop(int pageNumber) {
+
+        if (retrieveMoviesRunnablePop != null){
+            retrieveMoviesRunnablePop = null;
+        }
+
+        retrieveMoviesRunnablePop = new RetrieveMoviesRunnablePop(pageNumber);
+
+        final Future myHandler2 = AppExecutors.getInstance().networkIO().submit(retrieveMoviesRunnablePop);
+
+        AppExecutors.getInstance().networkIO().schedule(new Runnable() {
+            @Override
+            public void run() {
+                myHandler2.cancel(true);
+            }
+        }, 1000, TimeUnit.MILLISECONDS);
     }
 
     // Retrieving data from REstAPI by runnable class
@@ -115,6 +144,61 @@ public class MovieApiClient {
                     Credentials.API_KEY,
                     query,
                     pageNumber
+            );
+        }
+
+        private void cancelRequest() {
+            Log.v(" Tag: ", " Cancelling Search Request ");
+            cancelRequest = true;
+        }
+    }
+
+    private class RetrieveMoviesRunnablePop implements Runnable {
+
+        private int pageNumber;
+        boolean cancelRequest;
+
+        public RetrieveMoviesRunnablePop(int pageNumber) {
+            this.pageNumber = pageNumber;
+            this.cancelRequest = false;
+        }
+
+        @Override
+        public void run() {
+            // Getting the response objects
+            try {
+                Response response2 = getPop(pageNumber).execute();
+                if (cancelRequest) {
+                    return;
+                }
+                if (response2.code() == 200) {
+                    List<MovieModel> list = new ArrayList<>(((MovieSearchResponse) response2.body()).getMovies());
+                    if (pageNumber == 1) {
+                        // Sending data to live data
+                        // PostValue: used for background thread
+                        // setValue: not for Background thread
+                        mMoviesPop.postValue(list);
+                    } else {
+                        List<MovieModel> currentMovies = mMoviesPop.getValue();
+                        currentMovies.addAll(list);
+                        mMoviesPop.postValue(currentMovies);
+                    }
+                } else {
+                    String error = response2.errorBody().string();
+                    Log.v(" Tag ", " Error " + error);
+                    mMoviesPop.postValue(null);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                mMoviesPop.postValue(null);
+            }
+        }
+
+        // Search Method/ query
+        private Call<MovieSearchResponse> getPop(int pageNumber) {
+            return Servicey.getMovieApi().getPopular(
+                    Credentials.API_KEY,
+                    String.valueOf(pageNumber)
             );
         }
 
